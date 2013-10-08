@@ -1,0 +1,18 @@
+<h1> To Do List </h1>
+<%= form_for @task do |f|%>
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>
+
+<ul>
+  <% @tasks.each do |task|%>
+    <li> 
+      <%= form_for task, url: task_path(task) do |f| %>
+        <%= f.check_box :completed_at, checked: task.completed_at? %>
+        <%= f.submit %>
+      <% end %>
+
+      <%= content_tag :span, task.description, class: task_class(task) %>
+    </li>
+  <% end %>
+</ul>
