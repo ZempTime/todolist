@@ -1,0 +1,12 @@
+<%= form_for @list do |f| %>
+  <% if @list.errors.any? %>
+    <div class="errors">
+      <% @list.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>

@@ -5,11 +5,12 @@
 <% end %>
 
 <ul>
-  <% @tasks.each do |task|%>
-    <li> 
+  <% @tasks.sorted.each do |task|%>
+    <li>
       <%= form_for task, url: task_path(task) do |f| %>
         <%= f.check_box :completed_at, checked: task.completed_at? %>
         <%= f.submit %>
+        <font color="grey" size = 1><%= task.created_at.strftime("%A, %I:%M %p")%></font>
       <% end %>
 
       <%= content_tag :span, task.description, class: task_class(task) %>

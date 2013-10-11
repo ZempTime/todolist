@@ -12,6 +12,39 @@
  *= require_tree .
  */
 
+body {
+  margin: 0 auto;
+  width: 400px;
+}
+
 .strikeout {
   text-decoration: line-through;
+}
+
+.completed-at {
+  color: gray;
+  font-size: 0.6em;
+}
+
+.alert {
+  color: red;
+}
+
+.notice {
+  color: green;
+}
+
+.field_with_errors {
+  display: inline-block;
+}
+
+.field_with_errors input {
+  border: 1px solid red;
+}
+
+.errors {
+  background: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }

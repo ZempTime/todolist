@@ -1,0 +1,29 @@
+" Press ? for help
+
+.. (up a dir)
+/Users/czempel/Code/todolist/
+▾ app/
+  ▾ assets/
+    ▸ images/
+    ▸ javascripts/
+    ▾ stylesheets/
+        application.css
+  ▸ controllers/
+  ▸ helpers/
+  ▸ mailers/
+  ▸ models/
+  ▸ views/
+▸ bin/
+▸ config/
+▸ db/
+▸ lib/
+▸ log/
+▸ public/
+▸ test/
+▸ tmp/
+▸ vendor/
+  config.ru
+  Gemfile
+  Gemfile.lock
+  Rakefile
+  README.rdoc

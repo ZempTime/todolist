@@ -1,0 +1,31 @@
+<h1><%= @list.name %></h1>
+
+<%= form_for [@list, @task] do |f|%>
+  <% if @task.errors.any? %>
+    <div class="errors">
+      <% @task.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>
+
+<ul>
+  <% @list.tasks.sorted.each do |task| %>
+    <li>
+      <%= form_for [@list, task] do |f| %>
+        <%= f.check_box :completed_at, checked: task.completed_at? %>
+        <%= f.submit %>
+      <% end %>
+
+      <%= content_tag :span, task.description, class: task_class(task) %>
+
+      <% if task.completed_at? %>
+        <span class="completed-at">Completed on <%= task.completed_at.strftime("%A, %I:%M %p") %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -1,21 +1,23 @@
 class TasksController < ApplicationController
-  def index
-    @task = Task.new
-    @tasks = Task.all
-  end
 
   def create
-    @task = Task.new(task_params)
-    @task.save
+    @list = List.find(params[:list_id])
+    @task = @list.tasks.new(task_params)
 
-    redirect_to root_url
+    if @task.save
+      redirect_to list_path(@list), notice: "Task was saved successfully!"
+    else
+      render "lists/show"
+    end
+
   end
 
   def update
-    @task = Task.find(params[:id])
+    @list = List.find(params[:list_id])
+    @task = @list.tasks.find(params[:id])
     @task.complete!(params[:task][:completed_at])
 
-    redirect_to root_url
+    redirect_to list_path(@list)
   end
 
   private

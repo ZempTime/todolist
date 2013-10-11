@@ -1,0 +1,8 @@
+<h1>List Name: <%= @list.name %></h1>
+
+<%= form_for @list do |f| %>
+  <div>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  </div>
+<% end %>
