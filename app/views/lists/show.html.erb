@@ -19,6 +19,7 @@
       <%= form_for [@list, task] do |f| %>
         <%= f.check_box :completed_at, checked: task.completed_at? %>
         <%= f.submit %>
+        <%= button_to 'delete', [@list, task], method: :delete, data: {confirm: 'Are you sure?'} %>
       <% end %>
 
       <%= content_tag :span, task.description, class: task_class(task) %>
