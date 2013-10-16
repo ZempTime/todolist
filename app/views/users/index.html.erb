@@ -1,0 +1,16 @@
+<h1>Listing users</h1>
+<%= render partial: "form" %>
+
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'New User', new_user_path %>

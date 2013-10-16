@@ -1,16 +1,15 @@
 class ListsController < ApplicationController
+before_action :set_list, except: [:index, :new, :create]
   
   def index
     @list = List.new
-    @lists = List.all
+    @lists = current_user.lists.all
   end
 
   def edit
-    @list = List.find(params[:id])
   end
 
   def update
-    @list = List.find(params[:id])
     if @list.update(list_params)
       redirect_to root_path, notice: "List name was changed succesfully"
     else
@@ -19,23 +18,21 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
     @task = Task.new
-  end
+  end   
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.new(list_params)
 
     if @list.save 
       redirect_to list_path(@list), notice: "List was created successfully!"
     else
-      @lists = List.all
+      @lists = current_user.lists
       render action: :index
     end
   end
 
   def destroy
-    @list = List.find(params[:id])
     @list.destroy
     redirect_to root_path, notice: "List deleted"
   end
@@ -44,5 +41,10 @@ class ListsController < ApplicationController
   
   def list_params
     params.require(:list).permit(:name)
+  end 
+
+  def set_list
+    @list = current_user.lists.where(id: params[:id]).first
+    redirect_to lists_path, notice: "List does not exist" if @list.nil?
   end
 end
