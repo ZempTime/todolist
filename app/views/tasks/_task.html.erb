@@ -1,0 +1,16 @@
+<li>
+<%= link_to "Delete", "#", class: "delete-link pull-right", data: {url: list_task_path(@list, task)} %>
+
+  <%= form_for [@list, task] do |f| %>
+
+    <label>
+      <%= f.check_box :completed_at, checked: task.completed_at?, class: "task-checkbox" %>
+      <%= content_tag :span, task.description, class: task_class(task) %>
+      <% if task.completed_at? %>
+        <span class="completed-at">Completed on <%= task.completed_at.strftime("%A, %I:%M %p %Z") %></span>
+      <% end %>
+    </label>
+
+  <% end %>
+</li>
+

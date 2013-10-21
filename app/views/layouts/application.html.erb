@@ -8,13 +8,19 @@
 </head>
 <body>
 
-<% if notice %>
-  <div class="notice"><%= notice %></div>
-<% end %>
+  <% if user_signed_in? %>
+    Logged in as <%= current_user.name %>
+    <%= button_to "logout", logout_path, method: :delete  %>
+  <% else %>
+  <% end %>
 
-<% if alert %>
-  <div class="alert"><%= alert %></div>
-<% end %>
+  <% if notice %>
+    <div class="notice"><%= notice %></div>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert"><%= alert %></div>
+  <% end %>
 
 <%= yield %>
 
